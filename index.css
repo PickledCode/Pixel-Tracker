@@ -5,6 +5,10 @@
 	margin: 20px auto 10px auto;
 	border-bottom: dashed 1px rgb(40, 40, 40);
 }
+.left {
+	text-align: left;
+	display: block;
+}
 
 body {
 	font-size: 12pt;
@@ -39,7 +43,10 @@ body {
 		font-size: 13pt;
 		text-align: center;
 	}
-	#content input[type=text] {
+	#content textarea {
+		height: 54px;
+	}
+	#content input[type=text], #content textarea {
 		font-size: 11pt;
 		width: 502px;
 	}

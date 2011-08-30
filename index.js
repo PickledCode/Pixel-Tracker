@@ -16,7 +16,7 @@ $(document).ready(function(){
 				console.log('You haz success!');
 				console.log(data);
 				
-				$('#content div').html('Your pixel: <input type="text" disabled="yes" value="' + data.link + '" />');
+				$('#content div').html('<div class="left">Your pixel:</div><textarea>' + data.link + '</textarea>');
 			}
 		});
 		
