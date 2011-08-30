@@ -8,7 +8,8 @@ if (isset($_POST['email'])) {
 	$email = $_POST['email'];
 	
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) === true) {
-		$encrypt = Encryption::encrypt($email);
+		$encryptor = new Encryption('iHateMonkeys');
+		$encrypt = $encryptor->encrypt($email);
 		$_response['link'] = '/pixel.png?e=' . urlencode($encrypt);
 		$_status = 200;
 	}
