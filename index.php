@@ -13,10 +13,10 @@
 			<h2>Track your pixel</h2>
 		</div>
 		<div id="content">
-		
+			
 		</div>
 		<div id="foot">
-			
+			Copyright 2011 &copy; Alex &amp; Ryan
 		</div>
 	</div>
 </body>
