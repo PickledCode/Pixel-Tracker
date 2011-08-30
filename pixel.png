@@ -26,11 +26,12 @@ if (!$emailList->containsEmail($email)) {
 			$urlAddr, $ipAddress, $hostName, $unsubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
+	echo 'Sent message to ' . $email;
 } else {
 	// TODO: note this in the log.
 }
 
 $emailList->closeFile();
-readfile('pixel.secret.png.txt');
+// readfile('pixel.secret.png.txt');
 
 ?>
