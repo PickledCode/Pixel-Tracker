@@ -8,18 +8,23 @@ if (!isset($_GET['e'])) {
 require_once('_classes/_include.php');
 
 $decoder = new Encryption('iHateMonkeys');
+$encoder = new Encryption('iLoveMonkeys');
 $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList('_secret/blocked_emails.dat');
 if (!$emailList->containsEmail($email)) {
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$hostName = $_SERVER['REMOTE_HOST'];
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-	$msg = 'Someone has viewed your custom image from ' . $urlAddr . "\n\n" . 
-		   'IP: ' . $ipAddress . "\n" .
-		   'Hostname: ' . $hostName . "\n\n" .
-		   'If you believe that you have received this message in error,' . "\n" .
-		   'you can stop messages from this host by visiting the URL:' . "\n";
-	// TODO: fill in that shit
+	
+	$encE = $encoder->encrypt($email);
+	$unsubAddr = $_SERVER['HTTP_HOST'] . '/pixel.blocker.php?e=' . urlencode($encE);
+	$msg = sprintf("Someone has viewed your custom image from %s\n\n" .
+			"IP: %s\nHostname: %s\n\n" .
+			"If you did not subscribe to get these messages, you can cancel email\n" .
+			"notifications by visiting the URL: %s\n\nThank you,\nPixel Tracker team",
+			$urlAddr, $ipAddress, $hostName, $ubsubAddr
+	);
+	mail($email, 'Hit from Pixel Tracker', $msg);
 } else {
 	// TODO: note this in the log.
 }
