@@ -9,7 +9,7 @@ require_once('_classes/_include.php');
 
 $dec = new Encryption('iLoveMonkeys'); // note the different key for sign-down
 $decEmail = $dec->decrypt($_GET['e']);
-$eList = new EmailList('_secret/blocked_emails.dat');
+$eList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
 $eList->addEmail($decEmail);
 $eList->closeFile();
 

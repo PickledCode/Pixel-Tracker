@@ -10,7 +10,7 @@ $decoder = new Encryption('iHateMonkeys');
 $encoder = new Encryption('iLoveMonkeys'); // encoder for cancelation link
 
 $email = $decoder->decrypt($_GET['e']);
-$emailList = new EmailList('_secret/blocked_emails.dat');
+$emailList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
 
 if (!$emailList->containsEmail($email)) {
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
