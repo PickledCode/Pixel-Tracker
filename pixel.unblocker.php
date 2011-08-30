@@ -13,6 +13,6 @@ $eList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
 $eList->delEmail($decEmail);
 $eList->closeFile();
 
-echo 'Your email has been added to the no-spam list.';
+echo 'Your email has been removed from the no-spam list.';
 
 ?>
