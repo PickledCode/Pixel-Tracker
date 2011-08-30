@@ -31,6 +31,8 @@ if (!$emailList->containsEmail($email)) {
 }
 
 $emailList->closeFile();
+
+header('Content-Type: image/png');
 readfile('pixel.secret.png.txt');
 
 ?>
