@@ -4,6 +4,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			'url': 'pixel.submit.php',
+			'type': 'post',
 			'async': true,
 			'cache': false,
 			'data': {'email': email},
