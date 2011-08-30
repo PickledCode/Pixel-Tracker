@@ -54,13 +54,14 @@ class EmailList {
 		if (!$this->containsEmail($anEmail)) {
 			return;
 		}
+		flock($this->fp, LOCK_EX);
 		$readPtr = 0;
 		$writePtr = 0;
 		$compE = self::compressAddress($anEmail);
 		while (1) {
 			fseek($this->fp, $readPtr);
 			$str = $this->readEmail();
-			if ($str == false) break;
+			if ($str == false || empty($str)) break;
 			$justRead = ftell($this->fp) - $readPtr;
 			$readPtr += $justRead;
 			if (self::compressAddress($str) != $compE) {
@@ -70,6 +71,7 @@ class EmailList {
 			}
 		}
 		ftruncate($this->fp, $writePtr);
+		flock($this->fp, LOCK_UN);
 	}
 	
 	public function closeFile () {
