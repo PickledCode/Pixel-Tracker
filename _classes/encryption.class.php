@@ -4,16 +4,16 @@ class Encryption {
 	public $key = "";
 	
 	function __construct ($theKey) {
-		$key = $theKey;
+		$this->key = $theKey;
 	}
 	
 	function encrypt ($buffer) {
-		return base64_encode(rc4Encrypt($key, $buffer));
+		return base64_encode($this->rc4Encrypt($this->key, $buffer));
 	}
 	
 	function decrypt ($buffer) {
 		$decoded = base64_decode($buffer);
-		return rc4Decrypt($key, $decoded);
+		return $this->rc4Encrypt($this->key, $decoded);
 	}
 	
 	/**
