@@ -1,16 +1,17 @@
 <?php
-
 if (!isset($_GET['e'])) {
 	readfile('frown.png'); // TODO: put an actual frowny file here
 	exit();
 }
 
-require_once('_classes/_include.php');
+require_once dirname(__FILE__) . '/_classes/_include.php';
 
 $decoder = new Encryption('iHateMonkeys');
 $encoder = new Encryption('iLoveMonkeys'); // encoder for cancelation link
+
 $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList('_secret/blocked_emails.dat');
+
 if (!$emailList->containsEmail($email)) {
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$hostName = $_SERVER['REMOTE_HOST'];
