@@ -41,7 +41,7 @@ body {
 	}
 	#content input[type=text] {
 		font-size: 11pt;
-		width: 588px;
+		width: 550px;
 	}
 	#content input[type=submit], #content button {
 		-webkit-appearance: square-button;
