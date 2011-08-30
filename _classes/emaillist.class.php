@@ -60,6 +60,7 @@ class EmailList {
 		while (1) {
 			fseek($this->fp, $readPtr);
 			$str = $this->readEmail();
+			if ($str == false) break;
 			$justRead = ftell($this->fp) - $readPtr;
 			$readPtr += $justRead;
 			if (self::compressAddress($str) != $compE) {
