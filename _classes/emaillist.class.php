@@ -30,12 +30,12 @@ class EmailList {
 	}
 	
 	public function containsEmail ($anEmail) {
-		$eLow = self::compressAddress(strtolower($anEmail));
+		$eLow = self::compressAddress($anEmail);
 		fseek($this->fp, 0);
 		while (true) {
 			$str = $this->readEmail();
 			if ($str == false) return false;
-			if (self::compressAddress(strtolower($str)) == $eLow) {
+			if (self::compressAddress($str) == $eLow) {
 				return true;
 			}
 		}
@@ -47,7 +47,7 @@ class EmailList {
 			return;
 		}
 		fseek($this->fp, 0, SEEK_END);
-		fwrite($this->fp, self::compressAddress(strtolower($anEmail)) . "\n");
+		fwrite($this->fp, self::compressAddress($anEmail) . "\n");
 	}
 	
 	public function closeFile () {
@@ -73,7 +73,7 @@ class EmailList {
 			// remove dots
 			$comps[0] = str_replace('.', '', $comps[0]);
 		}
-		return $comps[0] . '@' . $comps[1];
+		return strtolower($comps[0] . '@' . $comps[1]);
 	}
 }
 

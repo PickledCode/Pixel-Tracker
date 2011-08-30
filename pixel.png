@@ -1,3 +1,21 @@
 <?php
 
+if (!isset($_GET['e'])) {
+	readfile('frown.png'); // TODO: put an actual frowny file here
+	exit();
+}
+
+require_once('_classes/_include.php');
+
+$decoder = new Encryption('iHateMonkeys');
+$email = $decoder->decrypt($_GET['e']);
+$emailList = new EmailList('_secret/blocked_emails.dat');
+if (!$emailList->containsEmail($email)) {
+	// TODO: send an email here.
+} else {
+	// TODO: note this in the log.
+}
+$emailList->closeFile();
+readfile('pixel.secret.png.txt');
+
 ?>
