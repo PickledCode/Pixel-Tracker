@@ -19,7 +19,7 @@ if (!$emailList->containsEmail($email)) {
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	
 	$encE = $encoder->encrypt($email);
-	$endE1 = $resubEnc->encrypt($email);
+	$encE1 = $resubEnc->encrypt($email);
 	$unsubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.blocker.php?e=' . urlencode($encE);
 	$resubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.unblocker.php?e=' . urlencode($encE1);
 	$msg = sprintf("Someone has viewed your custom image from %s\n\n" .
