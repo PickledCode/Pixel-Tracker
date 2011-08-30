@@ -22,7 +22,7 @@ if (!$emailList->containsEmail($email)) {
 			"IP: %s\nHostname: %s\n\n" .
 			"If you did not subscribe to get these messages, you can cancel email\n" .
 			"notifications by visiting the URL: %s\n\nThank you,\nPixel Tracker team",
-			$urlAddr, $ipAddress, $hostName, $ubsubAddr
+			$urlAddr, $ipAddress, $hostName, $unsubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
 } else {
