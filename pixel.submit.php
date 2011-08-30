@@ -12,9 +12,11 @@ if (isset($_POST['email'])) {
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) == true) {
 		$_response['step'] = 2;
 		
+		$link = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.php';
+		
 		$encryptor = new Encryption('iHateMonkeys');
 		$encrypt = $encryptor->encrypt($email);
-		$_response['link'] = '/pixel.png?e=' . urlencode($encrypt);
+		$_response['link'] = $link . '?e=' . urlencode($encrypt);
 		$_status = 200;
 	}
 }
