@@ -36,7 +36,11 @@ if (!$emailList->containsEmail($email)) {
 			"\nThank you,\nPixel Tracker team",
 			$urlAddr, $ipAddress, $hostName, $userAgent, $referrer, $unsubAddr, $resubAddr
 	);
-	mail($email, 'Hit from Pixel Tracker', $msg);
+	$headers =  'From: noreply@nodomain.com' . "\r\n" . 
+				'Reply-To: noreply@nodomain.com' . "\r\n" . 
+				'X-Mailer: Pixel Magic';
+	
+	mail($email, 'Hit from Pixel Tracker', $msg, $headers);
 	// echo 'Sent message to ' . $email;
 } else {
 	// echo 'Sucker is blacklisted.';
