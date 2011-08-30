@@ -18,22 +18,22 @@ if (!$emailList->containsEmail($email)) {
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	
 	$encE = $encoder->encrypt($email);
-	$unsubAddr = $_SERVER['HTTP_HOST'] . '/pixel.blocker.php?e=' . urlencode($encE);
+	$unsubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.blocker.php?e=' . urlencode($encE);
 	$msg = sprintf("Someone has viewed your custom image from %s\n\n" .
 			"IP: %s\nHostname: %s\n\n" .
-			"If you did not subscribe to get these messages, you can cancel email\n" .
+			"If you did not subscribe to get these messages, you can cancel email " .
 			"notifications by visiting the URL: %s\n\nThank you,\nPixel Tracker team",
 			$urlAddr, $ipAddress, $hostName, $unsubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
-	echo 'Sent message to ' . $email;
+	// echo 'Sent message to ' . $email;
 } else {
-	echo 'Sucker is blacklisted.';
+	// echo 'Sucker is blacklisted.';
 	// TODO: note this in the log.
 }
 
 $emailList->closeFile();
-// header('Content-Type: image/png');
-// readfile('pixel.secret.png.txt');
+header('Content-Type: image/png');
+readfile('pixel.secret.png.txt');
 
 ?>
