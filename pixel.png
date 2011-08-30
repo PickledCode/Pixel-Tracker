@@ -16,6 +16,9 @@ $emailList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
 if (!$emailList->containsEmail($email)) {
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$hostName = $_SERVER['REMOTE_HOST'];
+	if ($hostName == null || !isset($hostName)) {
+		$hostName = @gethostbyaddr(ipAddress);
+	}
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	
 	$encE = $encoder->encrypt($email);
