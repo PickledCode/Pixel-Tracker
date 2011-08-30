@@ -17,19 +17,6 @@ class Encryption {
 	}
 	
 	
-	/* STATIC */
-	public static function encrypt($buf) {
-		$key = 'Bitch3zB3Cr4zy';
-		$enc = new Encryption($key);
-		return $enc->encrypt($buf);
-	}
-	public static function decrypt($buf) {
-		$key = 'Bitch3zB3Cr4zy';
-		$enc = new Encryption($key);
-		return $enc->decrypt($buf);
-	}
-	
-	
 	/**
 	 * Code taken from http://farhadi.ir/downloads/rc4.php
 	 */
