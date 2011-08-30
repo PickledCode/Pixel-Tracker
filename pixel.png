@@ -1,7 +1,7 @@
 <?php
 if (!isset($_GET['e'])) {
 	header('Content-Type: image/png');
-	readfile('frown.png'); // TODO: put an actual frowny file here
+	readfile('frown.png');
 	exit();
 }
 
