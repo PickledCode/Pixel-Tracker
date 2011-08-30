@@ -16,7 +16,8 @@ $(document).ready(function(){
 				console.log('You haz success!');
 				console.log(data);
 				
-				$('#content div').html('<div class="left">Your pixel:</div><textarea>' + data.link + '</textarea>');
+				$('#content div').html('<div class="info">Your pixel:</div><textarea>' + data.link + '</textarea>');
+				$('#content textarea').focus();
 			}
 		});
 		
