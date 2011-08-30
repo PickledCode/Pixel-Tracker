@@ -1,1 +1,19 @@
 * { margin: 0; padding: 0; }
+
+body {
+	font-family: Helvetica, Arial;
+	background-color: rgb(220, 220, 220);
+}
+
+#container {
+	background-color: rgb(250, 250, 250);
+	border: 1px solid rgb(50, 50, 50);
+	width: 800px;
+	margin: 50px auto 50px auto;
+}
+
+#foot {
+	padding: 2px 0 4px 0;
+	text-align: center;
+	font-size: 10pt;
+}
