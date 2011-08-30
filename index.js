@@ -15,6 +15,8 @@ $(document).ready(function(){
 			'success': function(data, textStatus, xhr) {
 				console.log('You haz success!');
 				console.log(data);
+				
+				$('#content div').html('Your pixel: <input type="text" disabled="yes" value="' + data.link + '" />');
 			}
 		});
 		
