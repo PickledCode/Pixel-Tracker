@@ -38,8 +38,8 @@ if (!$emailList->containsEmail($email)) {
 	);
 	$headers =  'From: noreply@nodomain.com' . "\r\n" . 
 				'Reply-To: noreply@nodomain.com' . "\r\n" . 
-				'Message-id: WhatsAnID' . "\r\n" . 
-				'X-Mailer: Pixel Magic';
+				'Message-id: PixelMagic' . "\r\n" . 
+				'X-Mailer: PixelMagic';
 	
 	mail($email, 'Hit from Pixel Tracker', $msg, $headers);
 	// echo 'Sent message to ' . $email;
