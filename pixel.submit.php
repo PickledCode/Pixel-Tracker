@@ -9,7 +9,7 @@ if (isset($_POST['email'])) {
 	$email = $_POST['email'];
 	$_response['step'] = 1;
 	
-	if (filter_var($email, FILTER_VALIDATE_EMAIL) === true) {
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) == true) {
 		$_response['step'] = 2;
 		
 		$encryptor = new Encryption('iHateMonkeys');
