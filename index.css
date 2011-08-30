@@ -29,6 +29,7 @@ body {
 		font-size: 16pt;
 		letter-spacing: 3px;
 		text-indent: 2px;
+		/*font-style: italic;*/
 	}
 
 #content {
@@ -38,10 +39,10 @@ body {
 		font-size: 13pt;
 		text-align: center;
 	}
-	#content input {
+	#content input[type=text] {
 		font-size: 11pt;
 	}
-	#content button {
+	#content input[type=submit], #content button {
 		-webkit-appearance: square-button;
 		font-size: 11pt;
 		padding: 2px;
