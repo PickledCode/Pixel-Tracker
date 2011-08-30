@@ -1,12 +1,13 @@
 * { margin: 0; padding: 0; }
 .split {
-	width: 95%;
+	width: 760px;
 	height: 0px;
 	margin: 20px auto 10px auto;
 	border-bottom: dashed 1px rgb(40, 40, 40);
 }
 
 body {
+	font-size: 12pt;
 	font-family: Helvetica, Arial;
 	background-color: rgb(220, 220, 220);
 }
@@ -31,11 +32,23 @@ body {
 	}
 
 #content {
-	margin: 20px auto 20px auto;
+	padding: 20px;
 }
+	#content div {
+		font-size: 13pt;
+		text-align: center;
+	}
+	#content input {
+		font-size: 11pt;
+	}
+	#content button {
+		-webkit-appearance: square-button;
+		font-size: 11pt;
+		padding: 2px;
+	}
 
 #foot {
-	padding: 2px 0 4px 0;
+	padding: 2px 0 8px 0;
 	text-align: center;
 	font-size: 10pt;
 }
