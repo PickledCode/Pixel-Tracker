@@ -1,4 +1,10 @@
 * { margin: 0; padding: 0; }
+.split {
+	width: 95%;
+	height: 0px;
+	margin: 20px auto 10px auto;
+	border-bottom: dashed 1px rgb(40, 40, 40);
+}
 
 body {
 	font-family: Helvetica, Arial;
@@ -6,10 +12,26 @@ body {
 }
 
 #container {
-	background-color: rgb(250, 250, 250);
+	background-color: rgb(254, 254, 254);
 	border: 1px solid rgb(50, 50, 50);
 	width: 800px;
 	margin: 50px auto 50px auto;
+}
+
+#head {
+	padding: 15px;
+}
+	#head h1 {
+		font-size: 26pt;
+	}
+	#head h2 {
+		font-size: 16pt;
+		letter-spacing: 3px;
+		text-indent: 2px;
+	}
+
+#content {
+	margin: 20px auto 20px auto;
 }
 
 #foot {
