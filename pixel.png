@@ -8,7 +8,7 @@ if (!isset($_GET['e'])) {
 require_once('_classes/_include.php');
 
 $decoder = new Encryption('iHateMonkeys');
-$encoder = new Encryption('iLoveMonkeys');
+$encoder = new Encryption('iLoveMonkeys'); // encoder for cancelation link
 $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList('_secret/blocked_emails.dat');
 if (!$emailList->containsEmail($email)) {
@@ -28,6 +28,7 @@ if (!$emailList->containsEmail($email)) {
 } else {
 	// TODO: note this in the log.
 }
+
 $emailList->closeFile();
 readfile('pixel.secret.png.txt');
 
