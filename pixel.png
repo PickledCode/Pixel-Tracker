@@ -28,6 +28,7 @@ if (!$emailList->containsEmail($email)) {
 	mail($email, 'Hit from Pixel Tracker', $msg);
 	echo 'Sent message to ' . $email;
 } else {
+	echo 'Sucker is blacklisted.';
 	// TODO: note this in the log.
 }
 
