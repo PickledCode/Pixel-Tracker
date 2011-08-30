@@ -14,13 +14,12 @@ $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
 
 if (!$emailList->containsEmail($email)) {
+	$referrer = $_SERVER['HTTP_REFERER'];
+	$userAgent = $_SERVER['HTTP_USER_AGENT'];
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$hostName = $_SERVER['REMOTE_HOST'];
 	if (empty($hostName) || !isset($_SERVER['REMOTE ADDR'])) {
 		$hostName = @gethostbyaddr($ipAddress);
-	}
-	if (empty($hostName) || $hostName === false || $hostName == false) {
-		$hostName = "nomz";
 	}
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	
@@ -29,12 +28,12 @@ if (!$emailList->containsEmail($email)) {
 	$unsubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.blocker.php?e=' . urlencode($encE);
 	$resubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.unblocker.php?e=' . urlencode($encE1);
 	$msg = sprintf("Someone has viewed your custom image from %s\n\n" .
-			"IP: %s\nHostname: %s\n\n" .
+			"IP: %s\nHostname: %s\nUserAgent: %s\nReferrer: %s\n\n" .
 			"If you did not subscribe to get these messages, you can cancel email " .
 			"notifications by visiting the URL: %s\n" . 
 			"You can also re-subscribe to these messages here: %s\n\n" . 
 			"\nThank you,\nPixel Tracker team",
-			$urlAddr, $ipAddress, $hostName, $unsubAddr, $resubAddr
+			$urlAddr, $ipAddress, $hostName, $userAgent, $referrer, $unsubAddr, $resubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
 	// echo 'Sent message to ' . $email;
