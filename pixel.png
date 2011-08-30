@@ -8,6 +8,7 @@ require_once dirname(__FILE__) . '/_classes/_include.php';
 
 $decoder = new Encryption('iHateMonkeys');
 $encoder = new Encryption('iLoveMonkeys'); // encoder for cancelation link
+$resubEnc = new Encryption('iFuckMonkeys');
 
 $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList(dirname(__FILE__) . '/_secret/blocked_emails.dat');
@@ -18,12 +19,16 @@ if (!$emailList->containsEmail($email)) {
 	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	
 	$encE = $encoder->encrypt($email);
+	$endE1 = $resubEnc->encrypt($email);
 	$unsubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.blocker.php?e=' . urlencode($encE);
+	$resubAddr = $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . '/pixel.unblocker.php?e=' . urlencode($encE1);
 	$msg = sprintf("Someone has viewed your custom image from %s\n\n" .
 			"IP: %s\nHostname: %s\n\n" .
 			"If you did not subscribe to get these messages, you can cancel email " .
-			"notifications by visiting the URL: %s\n\nThank you,\nPixel Tracker team",
-			$urlAddr, $ipAddress, $hostName, $unsubAddr
+			"notifications by visiting the URL: %s\n" . 
+			"You can also un-cancel these messages here: %s\n\n"
+			"\nThank you,\nPixel Tracker team",
+			$urlAddr, $ipAddress, $hostName, $unsubAddr, $resubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
 	// echo 'Sent message to ' . $email;

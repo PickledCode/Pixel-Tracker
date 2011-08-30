@@ -50,6 +50,27 @@ class EmailList {
 		fwrite($this->fp, self::compressAddress($anEmail) . "\n");
 	}
 	
+	public function delEmail ($anEmail) {
+		if (!$this->containsEmail($anEmail)) {
+			return;
+		}
+		$readPtr = 0;
+		$writePtr = 0;
+		$compE = self::compressAddress($anEmail);
+		while (1) {
+			fseek($this->fp, $readPtr);
+			$str = $this->readEmail();
+			$justRead = ftell($this->fp) - $readPtr;
+			$readPtr += $justRead;
+			if (self::compressAddress($str) != $compE) {
+				fseek($this->fp, $writePtr);
+				fwrite($this->fp, $str . "\n");
+				$writePtr += $justRead;
+			}
+		}
+		ftruncate($this->fp, $writePtr);
+	}
+	
 	public function closeFile () {
 		fclose($this->fp);
 	}
