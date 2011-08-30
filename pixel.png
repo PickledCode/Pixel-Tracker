@@ -17,7 +17,7 @@ if (!$emailList->containsEmail($email)) {
 	$ipAddress = $_SERVER['REMOTE_ADDR'];
 	$hostName = $_SERVER['REMOTE_HOST'];
 	if (empty($hostName) || !isset($_SERVER['REMOTE ADDR'])) {
-		$hostName = @gethostbyaddr(ipAddress);
+		$hostName = @gethostbyaddr($ipAddress);
 	}
 	if (empty($hostName) || $hostName === false || $hostName == false) {
 		$hostName = "nomz";
