@@ -8,18 +8,18 @@ class Encryption {
 	}
 	
 	function encrypt ($buffer) {
-		return base64_encode($this->rc4Encrypt($this->key, $buffer));
+		return base64_encode(self::rc4Encrypt($this->key, $buffer));
 	}
 	
 	function decrypt ($buffer) {
 		$decoded = base64_decode($buffer);
-		return $this->rc4Encrypt($this->key, $decoded);
+		return self::rc4Encrypt($this->key, $decoded);
 	}
 	
 	/**
 	 * Code taken from http://farhadi.ir/downloads/rc4.php
 	 */
-	private function rc4Encrypt ($key, $pt) {
+	private static function rc4Encrypt ($key, $pt) {
 		$s = array();
 		for ($i=0; $i<256; $i++) {
 			$s[$i] = $i;
