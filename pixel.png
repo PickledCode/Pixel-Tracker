@@ -26,13 +26,14 @@ if (!$emailList->containsEmail($email)) {
 			$urlAddr, $ipAddress, $hostName, $unsubAddr
 	);
 	mail($email, 'Hit from Pixel Tracker', $msg);
+	echo 'Sent message to ' . $email;
 } else {
+	echo 'Sucker is blacklisted.';
 	// TODO: note this in the log.
 }
 
 $emailList->closeFile();
-
-header('Content-Type: image/png');
-readfile('pixel.secret.png.txt');
+// header('Content-Type: image/png');
+// readfile('pixel.secret.png.txt');
 
 ?>
