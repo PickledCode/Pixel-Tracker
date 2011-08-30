@@ -11,7 +11,15 @@ $decoder = new Encryption('iHateMonkeys');
 $email = $decoder->decrypt($_GET['e']);
 $emailList = new EmailList('_secret/blocked_emails.dat');
 if (!$emailList->containsEmail($email)) {
-	// TODO: send an email here.
+	$ipAddress = $_SERVER['REMOTE_ADDR'];
+	$hostName = $_SERVER['REMOTE_HOST'];
+	$urlAddr = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$msg = 'Someone has viewed your custom image from ' . $urlAddr . "\n\n" . 
+		   'IP: ' . $ipAddress . "\n" .
+		   'Hostname: ' . $hostName . "\n\n" .
+		   'If you believe that you have received this message in error,' . "\n" .
+		   'you can stop messages from this host by visiting the URL:' . "\n";
+	// TODO: fill in that shit
 } else {
 	// TODO: note this in the log.
 }
