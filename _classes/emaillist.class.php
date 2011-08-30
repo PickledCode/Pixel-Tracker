@@ -21,7 +21,7 @@ class EmailList {
 		}
 	}
 	
-	public function readEmail () {
+	private function readEmail () {
 		if (!feof($this->fp)) {
 			return rtrim(fgets($this->fp));
 		} else {
@@ -31,14 +31,17 @@ class EmailList {
 	
 	public function containsEmail ($anEmail) {
 		$eLow = self::compressAddress($anEmail);
+		flock($this->fp, LOCK_EX);
 		fseek($this->fp, 0);
 		while (true) {
 			$str = $this->readEmail();
 			if ($str == false) return false;
 			if (self::compressAddress($str) == $eLow) {
+				flock($this->fp, LOCK_UN);
 				return true;
 			}
 		}
+		flock($this->fp, LOCK_UN);
 		return false;
 	}
 	
@@ -46,8 +49,10 @@ class EmailList {
 		if ($this->containsEmail($anEmail)) {
 			return;
 		}
+		flock($this->fp, LOCK_EX);
 		fseek($this->fp, 0, SEEK_END);
 		fwrite($this->fp, self::compressAddress($anEmail) . "\n");
+		flock($this->fp, LOCK_UN);
 	}
 	
 	public function delEmail ($anEmail) {
