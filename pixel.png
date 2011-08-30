@@ -26,7 +26,7 @@ if (!$emailList->containsEmail($email)) {
 			"IP: %s\nHostname: %s\n\n" .
 			"If you did not subscribe to get these messages, you can cancel email " .
 			"notifications by visiting the URL: %s\n" . 
-			"You can also un-cancel these messages here: %s\n\n"
+			"You can also un-cancel these messages here: %s\n\n" . 
 			"\nThank you,\nPixel Tracker team",
 			$urlAddr, $ipAddress, $hostName, $unsubAddr, $resubAddr
 	);
