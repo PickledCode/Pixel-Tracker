@@ -1,0 +1,18 @@
+<?php
+
+if (!isset($_GET['e'])) {
+	echo "Umm, what the hell are you trying to pull?";
+	exit();
+}
+
+require_once('_classes/_include.php');
+
+$dec = new Encryption('iLoveMonkeys'); // note the different key for sign-down
+$decEmail = $dec->decrypt($_GET['e']);
+$eList = new EmailList('_secret/blocked_emails.dat');
+$eList->addEmail($decEmail);
+$eList->closeFile();
+
+echo 'Your email has been added to the no-spam list.';
+
+?>
